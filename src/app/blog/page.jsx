@@ -1,33 +1,33 @@
-"use client"
+
 import React from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
 import Image from 'next/image'
-import  useSWR  from 'swr'
+// import  useSWR  from 'swr'
 
-//server code 
-// async function getData() {
-//   const res = await fetch('http://localhost:3000/api/posts', { cache: "no-store" })
-//   // The return value is *not* serialized
-//   // You can return Date, Map, Set, etc.
+// server code 
+async function getData() {
+  const res = await fetch('https://dev-wev-next-js.vercel.app/api/posts', { cache: "no-store" })
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
  
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error('Failed to fetch data')
-//   }
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
  
-//   return res.json()
-// }
+  return res.json()
+}
  const metadata = {
   title: 'Dev Web | Blog',
   description: 'The Tech Agency',
 }
 
-const Blog = () => {
+const Blog =async () => {
 
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
-  // const data= await getData();
+  // const fetcher = (...args) => fetch(...args).then(res => res.json())
+  // const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
+  const data= await getData();
   return (
     <div className={`${style.container} `}>
 
