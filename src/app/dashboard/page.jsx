@@ -6,10 +6,10 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { ThemeContext } from '@/context/ThemeContext'
-export const metadata = {
-  title: 'Dev Web | Dashboard',
-  description: 'The Tech Agency',
-}
+// export const metadata = {
+//   title: 'Dev Web | Dashboard',
+//   description: 'The Tech Agency',
+// }
 
 // async function getData(name) {
 //   const res = await fetch(`http://localhost:3000/api/posts?username=${name}`, { cache: "no-store" })

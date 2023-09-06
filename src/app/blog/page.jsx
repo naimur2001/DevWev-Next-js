@@ -18,10 +18,10 @@ import Image from 'next/image'
  
 //   return res.json()
 // }
- export const metadata = {
-  title: 'Dev Web | Blog',
-  description: 'The Tech Agency',
-}
+//  export const metadata = {
+//   title: 'Dev Web | Blog',
+//   description: 'The Tech Agency',
+// }
 
 const Blog =  () => {
 
