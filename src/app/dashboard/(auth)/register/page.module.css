@@ -1,0 +1,36 @@
+.in1{
+  animation: move 5s infinite ease alternate;
+}
+
+@keyframes move {
+  from{
+    transform: translateX(-15px);
+  }
+  to{
+    transform: translateX(0px) scale(1.03);
+  }
+}
+.in2{
+  animation: move 5s infinite ease alternate 5s;
+}
+
+@keyframes move {
+  from{
+    transform: translateX(-15px);
+  }
+  to{
+    transform: translateX(0px) scale(1.03);
+  }
+}
+.in3{
+  animation: move 5s infinite ease alternate 10s;
+}
+
+@keyframes move {
+  from{
+    transform: translateX(-15px);
+  }
+  to{
+    transform: translateX(0px) scale(1.03);
+  }
+}

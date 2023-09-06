@@ -1,0 +1,18 @@
+.container{
+
+}
+.item:nth-child(1){
+background: url('/illustration.png');
+background-size: cover;
+
+}
+.item:nth-child(2){
+background: url('/websites.jpg');
+background-size: cover;
+
+}
+.item:nth-child(3){
+background: url('/apps.jpg');
+background-size: cover;
+
+}
