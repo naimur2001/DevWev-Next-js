@@ -1,4 +1,3 @@
-
 import React from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
@@ -18,12 +17,12 @@ async function getData() {
  
   return res.json()
 }
- const metadata = {
+export const metadata = {
   title: 'Dev Web | Blog',
   description: 'The Tech Agency',
 }
 
-const Blog =async () => {
+const Blog = async () => {
 
   // const fetcher = (...args) => fetch(...args).then(res => res.json())
   // const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
