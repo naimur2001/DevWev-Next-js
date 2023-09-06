@@ -1,33 +1,54 @@
-
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
 import Image from 'next/image'
 // import  useSWR  from 'swr'
 
 // server code 
-async function getData() {
-  const res = await fetch('http://localhost:3000/api/posts', { cache: "no-store" })
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+// async function getData() {
+//   const res = await fetch('http://localhost:3000/api/posts', { cache: "no-store" })
+//   // The return value is *not* serialized
+//   // You can return Date, Map, Set, etc.
  
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data')
+//   }
  
-  return res.json()
-}
- const metadata = {
+//   return res.json()
+// }
+ export const metadata = {
   title: 'Dev Web | Blog',
   description: 'The Tech Agency',
 }
 
-const Blog = async () => {
+const Blog =  () => {
 
   // const fetcher = (...args) => fetch(...args).then(res => res.json())
   // const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
-  const data= await getData();
+  // const data= await getData();
+  const [data,setData]=useState([])
+  const [err,setErr]=useState(false)
+  const [loading,setLoading]=useState(false)
+
+  useEffect(()=>{
+    const getData= async ()=>{
+      setLoading(true)
+      const res = await fetch(`http://localhost:3000/api/posts`,
+  {cache: 'no-store'}
+  )
+  
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ const data= await res.json()
+ setData(data)
+ setLoading(false)
+    };
+    getData()
+  },[])
   console.log(data)
   return (
     <div className={`${style.container} `}>

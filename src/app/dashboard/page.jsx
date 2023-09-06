@@ -6,46 +6,59 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { ThemeContext } from '@/context/ThemeContext'
- const metadata = {
+export const metadata = {
   title: 'Dev Web | Dashboard',
   description: 'The Tech Agency',
 }
 
-const Dashboard =   () => {
-  
-const {mode}=useContext(ThemeContext)
-const session =useSession()
-const router=useRouter();
-
-  // const [data,setData]=useState([])
-  // const [err,setErr]=useState(false)
-  // const [loading,setLoading]=useState(false)
-
-//   useEffect(()=>{
-//     const getData= async ()=>{
-//       setLoading(true)
-//       const res = await fetch(`https://jsonplaceholder.typicode.com/posts`,
-//   {cache: 'no-store'}
-//   )
-  
+// async function getData(name) {
+//   const res = await fetch(`http://localhost:3000/api/posts?username=${name}`, { cache: "no-store" })
+//   // The return value is *not* serialized
+//   // You can return Date, Map, Set, etc.
+ 
 //   if (!res.ok) {
 //     // This will activate the closest `error.js` Error Boundary
 //     throw new Error('Failed to fetch data')
 //   }
-//  const data= await res.json()
-//  setData(data)
-//  setLoading(false)
-//     };
-//     getData()
-//   },[])
+ 
+//   return res.json()
+// }
+
+const Dashboard =   () => {
+  
+const {mode}= useContext(ThemeContext)
+const session =useSession()
+const router=useRouter();
+
+
+  const [data,setData]=useState([])
+  const [err,setErr]=useState(false)
+  const [loading,setLoading]=useState(false)
+
+  useEffect(()=>{
+    const getData= async (name)=>{
+      setLoading(true)
+      const res = await fetch(`http://localhost:3000/api/posts?username=${name}`,
+  {cache: 'no-store'}
+  )
+  
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ const data= await res.json()
+ setData(data)
+ setLoading(false)
+    };
+    getData(session?.data?.user?.name)
+  },[session?.data?.user?.name])
+
+console.log(data)
+// const fetcher = (...args) => fetch(...args).then(res => res.json())
+// const { data, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user?.name}`, fetcher)
 
 
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
-const { data, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user?.name}`, fetcher)
-//const { data, error, isLoading } = useSWR(`/api/posts?username=${'Naimur'}`, fetcher)
-console.log(session,"emon")
-console.log(data,"data mama")
 
 if (session.status==="loading") {
   return   <div className='flex justify-center items-center '><div className="  animate-spin rounded-full h-32 w-32 border-t-4 border-rose-500"></div></div> 
@@ -97,9 +110,7 @@ if (session.status==="authenticated") {
     <div  className={style.container}>
   <div className='grid grid-cols-2 gap-5'>
   {
-   isLoading
-   ? "loading"
-   :  data?.map(post=><div key={post._id}>
+   data?.map(post=><div key={post._id}>
       <div  className='flex h-[200px] gap-2'>
       <div className="flex flex-1 flex-col justify-between">
         <h1 className="text-xl">{post.title}</h1>
