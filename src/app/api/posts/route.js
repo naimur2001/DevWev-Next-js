@@ -16,6 +16,7 @@ export const GET = async (request) => {
     }
     // return new NextResponse("Database cholche !!", { status: 200 });
 };
+
 //post
 export const POST = async (request) => {
  const {title,desc,image,content,username}= await request.json()
