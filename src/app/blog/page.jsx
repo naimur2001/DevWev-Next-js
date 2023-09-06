@@ -28,6 +28,7 @@ const Blog =async () => {
   // const fetcher = (...args) => fetch(...args).then(res => res.json())
   // const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
   const data= await getData();
+  console.log(data)
   return (
     <div className={`${style.container} `}>
 
