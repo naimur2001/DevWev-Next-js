@@ -1,4 +1,4 @@
-
+"use client"
 import React from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
@@ -18,7 +18,7 @@ import  useSWR  from 'swr'
  
 //   return res.json()
 // }
-export const metadata = {
+ const metadata = {
   title: 'Dev Web | Blog',
   description: 'The Tech Agency',
 }
