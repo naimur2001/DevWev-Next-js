@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { ThemeContext } from '@/context/ThemeContext'
-export const metadata = {
+ const metadata = {
   title: 'Dev Web | Dashboard',
   description: 'The Tech Agency',
 }
