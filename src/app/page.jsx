@@ -13,7 +13,7 @@ export default function Home() {
 <p className="text-2xl font-light">
   Turning your idea into reality. We bring together the teams from global tech industry.
 </p>
-<Button url={"/portfolio"} text={"See Our Works"} ></Button>
+<Button url={"/profile"} text={"See Our Works"} ></Button>
 
     </div>
     <div className="imgs flex-1 object-cover">
