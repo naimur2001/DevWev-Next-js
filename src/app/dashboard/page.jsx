@@ -35,7 +35,7 @@ const router=useRouter();
   useEffect(()=>{
     const getData= async (name)=>{
       setLoading(true)
-      const res = await fetch(`http://localhost:3000/api/posts?username=${name}`,
+      const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts?username=${name}`,
   {cache: 'no-store'}
   )
   
@@ -76,7 +76,7 @@ const handleSubmit= async (event)=>{
   const postInfo={title,desc,image,content,username}
 console.log(postInfo)
   try {
-  const res= await fetch('/api/posts',{
+  const res= await fetch('https://dev-wev-next-js.vercel.app/api/posts',{
       method:"POST",
       headers:{
         "content-type":"application/json"
@@ -93,7 +93,7 @@ console.log(postInfo)
 
 const handleDelete=async (id)=>{
 try {
-  const res= await fetch(`/api/posts/${id}`,{
+  const res= await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,{
     method:"DELETE"
   })
   mutate()
