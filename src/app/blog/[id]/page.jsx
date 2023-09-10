@@ -30,7 +30,7 @@ const BlogId =  ({params}) => {
 // const data=await getData(params.id);
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error, isLoading } = useSWR(`/api/posts/${id}`, fetcher)
+  const { data, error, isLoading } = useSWR(`/api/posts/${params.id}`, fetcher)
   // const data= await getData();
 // const [data,setData]=useState([])
 // const [err,setErr]=useState(false)
