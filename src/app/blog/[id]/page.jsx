@@ -48,8 +48,8 @@ const data= await res.json()
 setData(data)
 setLoading(false)
   };
-  getData(params.id)
-},[params.id])
+  getData(params)
+},[params])
 // console.log(data)
   return (
     <div className='container'>
