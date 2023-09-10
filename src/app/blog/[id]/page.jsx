@@ -1,22 +1,21 @@
-"use client"
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import { notFound } from "next/navigation";
 // import {notFound} from 'next/navigation'
 //server code 
-// async function getData(id) {
-//   const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,
-//   {cache: 'no-store'}
-//   )
-//   // The return value is *not* serialized
-//   // You can return Date, Map, Set, etc.
+async function getData(id) {
+  const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,
+  {cache: 'no-store'}
+  )
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
  
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error('Failed to fetch data')
-//   }
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    return notFound()
+  }
  
-//   return res.json()
-// }
+  return res.json()
+}
 // or Dynamic metadata
 // export async function generateMetadata({ params }) {
 //  const post= await getData(params.id)
@@ -26,31 +25,31 @@ import React, { useEffect, useState } from 'react'
 //   }
 // }
 
-const BlogId =  ({params}) => {
-// const data=await getData(params.id);
+const BlogId = async ({params}) => {
+const data=await getData(params.id);
 
-const [data,setData]=useState([])
-const [err,setErr]=useState(false)
-const [loading,setLoading]=useState(false)
+// const [data,setData]=useState([])
+// const [err,setErr]=useState(false)
+// const [loading,setLoading]=useState(false)
 
-useEffect(()=>{
-  const getData= async (id)=>{
-    setLoading(true)
-    const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,
-{cache: 'no-store'}
-)
+// useEffect(()=>{
+//   const getData= async (id)=>{
+//     setLoading(true)
+//     const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,
+// {cache: 'no-store'}
+// )
 
-if (!res.ok) {
-  // This will activate the closest `error.js` Error Boundary
-  throw new Error('Failed to fetch data')
-}
-const data= await res.json()
-setData(data)
-setLoading(false)
-  };
-  getData(params)
-},[params])
-// console.log(data)
+// if (!res.ok) {
+//   // This will activate the closest `error.js` Error Boundary
+//   throw new Error('Failed to fetch data')
+// }
+// const data= await res.json()
+// setData(data)
+// setLoading(false)
+//   };
+//   getData(params)
+// },[params])
+console.log(data)
   return (
     <div className='container'>
     <div className='flex'>
