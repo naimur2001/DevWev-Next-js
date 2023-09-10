@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import React, { useEffect, useState } from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
