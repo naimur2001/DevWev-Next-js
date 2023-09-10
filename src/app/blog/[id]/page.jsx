@@ -1,6 +1,6 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 // import { notFound } from "next/navigation";
-import useSWR from 'swr';
+// import useSWR from 'swr';
 // import {notFound} from 'next/navigation'
 //server code 
 // async function getData(id) {
@@ -25,12 +25,27 @@ import useSWR from 'swr';
 //     description:post.title
 //   }
 // }
+import Image from 'next/image'
+import React from 'react'
+// import {notFound} from 'next/navigation'
+//server code 
+async function getData(id) {
+  const res = await fetch(`https://dev-wev-next-js.vercel.app/${id}`,
+  {cache: 'no-store'}
+  )
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
 
-const BlogId =  ({params}) => {
-// const data=await getData(params.id);
-
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error, isLoading } = useSWR(`/api/posts/${params.id}`, fetcher)
+const BlogId = async ({params}) => {
+const data=await getData(params.id);
   // const data= await getData();
 // const [data,setData]=useState([])
 // const [err,setErr]=useState(false)
