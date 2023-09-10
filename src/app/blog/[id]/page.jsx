@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 // import {notFound} from 'next/navigation'
 //server code 
 async function getData(id) {
-  const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts/${id}`,
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`,
   {cache: 'no-store'}
   )
   // The return value is *not* serialized
