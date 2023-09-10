@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import style from "./page.module.css"
 import Link from 'next/link'
 import Image from 'next/image'
-// import  useSWR  from 'swr'
+import  useSWR  from 'swr'
 
 // server code 
 // async function getData() {

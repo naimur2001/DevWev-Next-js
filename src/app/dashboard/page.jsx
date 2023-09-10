@@ -52,7 +52,7 @@ const router=useRouter();
 
 // console.log(data)
 const fetcher = (...args) => fetch(...args).then(res => res.json())
-const { data, error, isLoading } = useSWR(`https://dev-wev-next-js.vercel.app/api/posts?username=${session?.data?.user?.name}`, fetcher)
+const { data, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user?.name}`, fetcher)
 
 
 
