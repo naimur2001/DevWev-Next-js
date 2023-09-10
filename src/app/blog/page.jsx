@@ -25,31 +25,31 @@ import Image from 'next/image'
 
 const Blog =  () => {
 
-  // const fetcher = (...args) => fetch(...args).then(res => res.json())
-  // const { data, error, isLoading } = useSWR(`/api/posts`, fetcher)
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+  const { data, error, isLoading } = useSWR(`https://dev-wev-next-js.vercel.app/api/posts`, fetcher)
   // const data= await getData();
-  const [data,setData]=useState([])
-  const [err,setErr]=useState(false)
-  const [loading,setLoading]=useState(false)
+//   const [data,setData]=useState([])
+//   const [err,setErr]=useState(false)
+//   const [loading,setLoading]=useState(false)
 
-  useEffect(()=>{
-    const getData= async ()=>{
-      setLoading(true)
-      const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts`,
-  {cache: 'no-store'}
-  )
+//   useEffect(()=>{
+//     const getData= async ()=>{
+//       setLoading(true)
+//       const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts`,
+//   {cache: 'no-store'}
+//   )
   
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
- const data= await res.json()
- setData(data)
- setLoading(false)
-    };
-    getData()
-  },[])
-  console.log(data)
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data')
+//   }
+//  const data= await res.json()
+//  setData(data)
+//  setLoading(false)
+  //   };
+  //   getData()
+  // },[])
+  // console.log(data)
   return (
     <div className={`${style.container} `}>
 

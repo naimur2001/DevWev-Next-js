@@ -28,31 +28,31 @@ const session =useSession()
 const router=useRouter();
 
 
-  const [data,setData]=useState([])
-  const [err,setErr]=useState(false)
-  const [loading,setLoading]=useState(false)
+//   const [data,setData]=useState([])
+//   const [err,setErr]=useState(false)
+//   const [loading,setLoading]=useState(false)
 
-  useEffect(()=>{
-    const getData= async (name)=>{
-      setLoading(true)
-      const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts?username=${name}`,
-  {cache: 'no-store'}
-  )
+//   useEffect(()=>{
+//     const getData= async (name)=>{
+//       setLoading(true)
+//       const res = await fetch(`https://dev-wev-next-js.vercel.app/api/posts?username=${name}`,
+//   {cache: 'no-store'}
+//   )
   
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
- const data= await res.json()
- setData(data)
- setLoading(false)
-    };
-    getData(session?.data?.user?.name)
-  },[session?.data?.user?.name])
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data')
+//   }
+//  const data= await res.json()
+//  setData(data)
+//  setLoading(false)
+//     };
+//     getData(session?.data?.user?.name)
+//   },[session?.data?.user?.name])
 
-console.log(data)
-// const fetcher = (...args) => fetch(...args).then(res => res.json())
-// const { data, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user?.name}`, fetcher)
+// console.log(data)
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+const { data, error, isLoading } = useSWR(`https://dev-wev-next-js.vercel.app/api/posts?username=${session?.data?.user?.name}`, fetcher)
 
 
 
@@ -106,7 +106,9 @@ if (session.status==="authenticated") {
   return (
     <div  className={style.container}>
   <div className='grid grid-cols-2 gap-5'>
-  {
+  {isLoading
+            ? "loading"
+            :
    data?.map(post=><div key={post._id}>
       <div  className='flex h-[200px] gap-2'>
       <div className="flex flex-1 flex-col justify-between">
